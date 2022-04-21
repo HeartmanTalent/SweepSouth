@@ -37,6 +37,7 @@ class JobTagLink(models.Model):
 
     class Meta:
         verbose_name_plural = "job_tag_links"
+        unique_together = ('job', 'tag',)
 
     def __str__(self):
         return "Job Tag Link: " + str(self.id)
@@ -52,6 +53,7 @@ class JobTypeLink(models.Model):
 
     class Meta:
         verbose_name_plural = "job_type_links"
+        unique_together = ('job', 'job_types',)
 
     def __str__(self):
         return "Job Type Link: " + str(self.id)
