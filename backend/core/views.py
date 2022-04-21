@@ -18,12 +18,11 @@ class JobViewSet(viewsets.ModelViewSet):
         Optionally restricts the returned jobs by filtering against a `parameter` query parameter in the URL.
         """
         queryset = Job.objects.all()
-        company = self.request.query_params.get('company')
-        location = self.request.query_params.get('location')
-        title = self.request.query_params.get('title')
-        remote = self.request.query_params.get('remote')
-        tag = self.request.query_params.get('tag')
-        typ = self.request.query_params.get('type')
+        company = self.request.query_params.get("company")
+        location = self.request.query_params.get("location")
+        title = self.request.query_params.get("title")
+        tag = self.request.query_params.get("tag")
+        typ = self.request.query_params.get("type")
 
         if company is not None:
             queryset = queryset.filter(company_name=company)
@@ -32,8 +31,6 @@ class JobViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(location=location)
         if title is not None:
             queryset = queryset.filter(title__icontains=title)
-        if remote is not None:
-            queryset = queryset.filter(remote=remote)
         if tag is not None:
             tg = Tag.objects.filter(title=tag).first()
             if tg is not None:

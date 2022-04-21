@@ -1,10 +1,19 @@
 import datetime
 import json
 import requests
+import re
 from django.core.management.base import BaseCommand
 from core.models import Job, JobType, Tag, JobTypeLink, JobTagLink
 from django.utils.timezone import make_aware
 from datetime import datetime
+
+CLEANR = re.compile(
+    '<.*?>|&([a-z0-9]+|#[0-9]{1,6}|#x[0-9a-f]{1,6});')
+
+
+def cleanhtml(raw_rext):
+    cleantext = re.sub(CLEANR, '', raw_rext)
+    return cleantext
 
 
 class Command(BaseCommand):
@@ -35,6 +44,8 @@ class Command(BaseCommand):
                 for job in jobs:
                     slug, company_name, title, description, remote, url, tags, job_types, location, created_at = job.values()
                     created_at = make_aware(datetime.fromtimestamp(created_at))
+                    # remove HTML tags from the decription
+                    description = cleanhtml(description)
                     j = Job(slug=slug, company_name=company_name, title=title,
                             description=description, remote=remote, url=url, location=location, created_at=created_at)
 
