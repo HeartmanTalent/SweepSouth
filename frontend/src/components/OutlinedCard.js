@@ -52,9 +52,8 @@ export default function OutlinedCard(props) {
                             <Button size="small" onClick={props.onClick} id={props.id}>More Details</Button>
 
                         )
-
                         }
-                        <Button size="small">Apply </Button>
+                        <a href={props.url}><Button size="small">Apply </Button></a>
                     </CardActions>
                 </React.Fragment>
             </Card>
