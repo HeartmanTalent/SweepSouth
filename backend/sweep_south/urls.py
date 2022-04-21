@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from rest_framework import routers
 from core import views
-
 
 
 router = routers.DefaultRouter()
@@ -16,5 +15,7 @@ router.register(r'job-type-link', views.JobTypeLinkiewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('auth/', include('rest_framework.urls'))
+    path('auth/', include('rest_framework.urls')),
+    # re_path('^jobs/(?P<location>.+)/$', views.JobList.as_view()),
+
 ]
