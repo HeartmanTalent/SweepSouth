@@ -158,7 +158,8 @@ export default function Home() {
                     <Toolbar sx={{ pt: 2, pb: 2 }}>
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth >
-                                <InputLabel id="demo-simple-select-label" sx={{ color: 'white'}}>Parameter</InputLabel>
+                                <InputLabel id="demo-simple-select-label" 
+                                sx={{ color: 'white'}}>Parameter</InputLabel>
                                 <Select
                                     sx={{ color: 'white' }}
                                     labelId="demo-simple-select-label"
@@ -186,15 +187,6 @@ export default function Home() {
                                 onChange={handleQueryChange}
                             />
                         </Search>
-                        {/* <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        Jobs
-                    </Typography> */}
-
                     </Toolbar>
                 </AppBar>
             </Box>
