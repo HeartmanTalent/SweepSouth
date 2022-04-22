@@ -14,8 +14,6 @@ router.register(r'job-type-link', views.JobTypeLinkiewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
     path('auth/', include('rest_framework.urls')),
-    # re_path('^jobs/(?P<location>.+)/$', views.JobList.as_view()),
-
 ]
