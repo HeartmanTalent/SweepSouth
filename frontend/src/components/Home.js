@@ -66,11 +66,55 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
 
     const handleParameterChange = (event) => {
-        setParameter(event.target.value);
+        const param = event.target.value
+        if (param && query) {
+            axios.get('/api/jobs/?' + param + '=' + query, { "Access-Control-Allow-Origin": "*" })
+                .then((response) => {
+                    setJobs(response.data);
+                    setParameter(param);
+                }, [])
+                .catch((error) => {
+                    console.error(error.message);
+
+                })
+        } else {
+            axios.get('/api/jobs/', { "Access-Control-Allow-Origin": "*" })
+                .then((response) => {
+                    setJobs(response.data);
+                    setSingle(false);
+                }, [])
+                .catch((error) => {
+                    console.error(error.message);
+
+                })
+        }
+
     };
 
     const handleQueryChange = (event) => {
-        setQuery(event.target.value);
+        const qry = event.target.value
+        if (qry) {
+            axios.get('/api/jobs/?' + parameter + '=' + qry, { "Access-Control-Allow-Origin": "*" })
+                .then((response) => {
+                    setJobs(response.data);
+                    setQuery(qry);
+                }, [])
+                .catch((error) => {
+                    console.error(error.message);
+
+                })
+        } else {
+            axios.get('/api/jobs/', { "Access-Control-Allow-Origin": "*" })
+                .then((response) => {
+                    setJobs(response.data);
+                    setSingle(false);
+                    setQuery(qry);
+                }, [])
+                .catch((error) => {
+                    console.error(error.message);
+
+                })
+        }
 
     };
 
@@ -95,7 +139,8 @@ export default function Home() {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const { data: response } = await axios.get('/api/jobs', { "Access-Control-Allow-Origin": "*" });
+                const { data: response } = await axios.get('/api/jobs',
+                    { "Access-Control-Allow-Origin": "*" });
                 setJobs(response);
             } catch (error) {
                 console.error(error.message);
@@ -158,7 +203,7 @@ export default function Home() {
                     {loading && <div>Loading</div>}
                     {(!loading && !single) && (
                         <div >
-                            <h2>Jobs ({Object.keys(jobs).length})</h2>
+                            <h2>Jobs ({Object.keys(jobs).length}) </h2>
                             {jobs.map(item => (
                                 <OutlinedCard key={item.id}
                                     onClick={handleJobChange}
@@ -172,8 +217,6 @@ export default function Home() {
                         </div>
                     )}
                     {(job && single) && (
-                        <div >
-
                             <OutlinedCard key={job.id}
                                 title={job.title}
                                 description={job.description}
@@ -184,7 +227,6 @@ export default function Home() {
                                 onClick={cancelJobChange}
 
                             />
-                        </div>
                     )}
 
                 </Container>

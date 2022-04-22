@@ -68,7 +68,7 @@ class Job(models.Model):
     description = models.TextField(blank=True, null=True)
     remote = models.BooleanField(_('Remote'), default=False)
     url = models.URLField(_("URL"))
-    location = models.CharField(_("Slug"), max_length=500, null=True)
+    location = models.CharField(_("Location"), max_length=500, null=True)
     created_at = models.DateTimeField(_("Date Created"))
 
     class Meta:

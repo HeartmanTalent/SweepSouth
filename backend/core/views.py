@@ -25,10 +25,10 @@ class JobViewSet(viewsets.ModelViewSet):
         typ = self.request.query_params.get("type")
 
         if company is not None:
-            queryset = queryset.filter(company_name=company)
+            queryset = queryset.filter(company_name__icontains=company)
         if location is not None:
-            
-            queryset = queryset.filter(location=location)
+
+            queryset = queryset.filter(location__icontains=location)
         if title is not None:
             queryset = queryset.filter(title__icontains=title)
         if tag is not None:
