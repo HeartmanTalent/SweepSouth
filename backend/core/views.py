@@ -1,10 +1,14 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from core import serializers
 from .models import Tag, JobType, Job, JobTypeLink, JobTagLink
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication] # protect user account
+    permission_classes = [IsAuthenticated] 
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
 

@@ -2,3 +2,4 @@ Django==3.2.6
 psycopg2-binary==2.9.1
 requests==2.27.1
 djangorestframework==3.13.1
+model-bakery==1.5.0 # for testing

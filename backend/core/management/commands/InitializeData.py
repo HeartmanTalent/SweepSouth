@@ -29,9 +29,6 @@ class Command(BaseCommand):
                 Tag.objects.all().delete()
                 JobTypeLink.objects.all().delete()
                 JobTagLink.objects.all().delete()
-
-                self.stdout.write(self.style.SUCCESS(
-                    "Successfully cleaned the database"))
                 data = json.loads(response.content)
                 jobs = data["data"]
                 tag_list = []
@@ -97,11 +94,8 @@ class Command(BaseCommand):
 
                 if jtk_list:
                     JobTagLink.objects.bulk_create(jtk_list)
-                self.stdout.write(self.style.SUCCESS(
-                    "Successfully added new data"))
+                self.stdout.write("Successfully added new data")
             else:
-                self.stdout.write(self.style.ERROR(
-                    "Failed to load data, on error HTTP CODE : " + response.status_code))
+                self.stdout.write("Failed to load data, on error HTTP CODE : " + response.status_code)
         except Exception as e:  # display the error for the developer
-            self.stdout.write(self.style.ERROR(
-                              "Failed to load data due to: " + str(e)))
+            self.stdout.write("Failed to load data due to: " + str(e))
