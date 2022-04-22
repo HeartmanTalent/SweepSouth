@@ -155,10 +155,10 @@ export default function Home() {
         <>
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
-                    <Toolbar>
+                    <Toolbar sx={{ pt: 2, pb: 2 }}>
                         <Box sx={{ minWidth: 120 }}>
                             <FormControl fullWidth >
-                                <InputLabel id="demo-simple-select-label" sx={{ color: 'white' }}>Parameter</InputLabel>
+                                <InputLabel id="demo-simple-select-label" sx={{ color: 'white'}}>Parameter</InputLabel>
                                 <Select
                                     sx={{ color: 'white' }}
                                     labelId="demo-simple-select-label"
