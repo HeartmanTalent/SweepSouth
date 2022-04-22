@@ -13,4 +13,5 @@ fi
 ./manage.py makemigrations
 ./manage.py migrate
 ./manage.py InitializeData
+./manage.py test core
 ./manage.py runserver 0.0.0.0:8000
