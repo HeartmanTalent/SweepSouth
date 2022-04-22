@@ -12,9 +12,9 @@ backend: http://localhost:8000/api
 frontend : http://localhost:3000/
 ## Architectural Decisions
 
-Decided to pull the data whine the app is initialized just after applying migrations, to avoid delays once the app is up. 
+Decided to pull the data when the app is initialized just after applying migrations, to avoid delays once the app is up. 
 
-All the data can be  somplified into 3 main Classes, Job, JobType and Tag.
+All the data can be  simplified into 3 main Classes, Job, JobType and Tag.
 
 Linker tables were used since I normalised the many to many relation between Job and Tags and JobType. 
 
