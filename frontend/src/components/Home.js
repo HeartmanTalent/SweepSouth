@@ -3,7 +3,6 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import InputLabel from '@mui/material/InputLabel';
@@ -82,6 +81,7 @@ export default function Home() {
                 .then((response) => {
                     setJobs(response.data);
                     setSingle(false);
+                    setParameter(param);
                 }, [])
                 .catch((error) => {
                     console.error(error.message);
@@ -157,13 +157,14 @@ export default function Home() {
                 <AppBar position="static">
                     <Toolbar>
                         <Box sx={{ minWidth: 120 }}>
-                            <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Parameter</InputLabel>
+                            <FormControl fullWidth >
+                                <InputLabel id="demo-simple-select-label" sx={{ color: 'white' }}>Parameter</InputLabel>
                                 <Select
+                                    sx={{ color: 'white' }}
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={parameter}
-                                    label="Age"
+                                    label="Parameter"
                                     onChange={handleParameterChange}
                                 >
                                     <MenuItem value={"type"}>Type</MenuItem>
@@ -217,16 +218,16 @@ export default function Home() {
                         </div>
                     )}
                     {(job && single) && (
-                            <OutlinedCard key={job.id}
-                                title={job.title}
-                                description={job.description}
-                                slug={job.slug}
-                                company_name={job.company_name}
-                                location={job.location}
-                                url={job.url}
-                                onClick={cancelJobChange}
+                        <OutlinedCard key={job.id}
+                            title={job.title}
+                            description={job.description}
+                            slug={job.slug}
+                            company_name={job.company_name}
+                            location={job.location}
+                            url={job.url}
+                            onClick={cancelJobChange}
 
-                            />
+                        />
                     )}
 
                 </Container>

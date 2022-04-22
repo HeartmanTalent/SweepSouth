@@ -18,6 +18,13 @@ services:
       - POSTGRES_USER=sweep_south
       - POSTGRES_PASSWORD=sweep_south
       - POSTGRES_DB=sweep_south
-      
+  
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+
 volumes:
   postgres_data:
